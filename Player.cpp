@@ -1,67 +1,72 @@
 #include <iostream>
 #include "Player.h"
+#include "utilities.h"
 
-Player ::Player(char* name,int HP,int force){
-    level=1;
-    coins=0;
-    this->force=force;
-    this->HP=HP;
-    this->maxHP=HP;
+Player::Player(const char* name,int HP,int force)
+{
+    m_level=1;
+    m_coins=0;
+    this->m_force=force;
+    this->m_HP=HP;
+    this->m_maxHP=HP;
 }
 
-Player::printInfo(){
-    printfPlayerInfo(name,level,force,HP,coins);
+void Player::printInfo(){
+    printPlayerInfo(m_name,m_level,m_force,m_HP,m_coins);
 }
 
-Player::levelUP(){
-    if(level<10){
-        level++;
+void Player::levelUp()
+{
+    if(m_level<10){
+        m_level++;
     }
 }
-Player::getLevel(){
-    return level;
+int Player::getLevel()const{
+    return m_level;
 }
-Player::buff(int additionalForce){
-    force+=additionalForce;
-}
-
-Player::heal(int additionalHP){
-    if((HP+additionalHP)>=maxHP){
-        HP=maxHP;
-    }
-    else{
-        HP+=additionalHP;
-    }
+void Player::buff(int additionalForce){
+    m_force+=additionalForce;
 }
 
-Player::damage(int lowHP){
-    if((HP-lowHP)<=0){
-        HP=0;
+void Player::heal(int additionalHP){
+    if((m_HP+additionalHP)>=m_maxHP){
+        m_HP=m_maxHP;
     }
     else{
-        HP-=lowHP;
+        m_HP+=additionalHP;
     }
 }
 
-Player::isKnouckedOut(){
-    if(HP==0){
+void Player::damage(int lowHP){
+    if((m_HP-lowHP)<=0){
+        m_HP=0;
+    }
+    else{
+        m_HP-=lowHP;
+    }
+}
+
+bool Player::isKnockedOut()const
+{
+    if(m_HP==0){
         return true;
     }
     return false;
 }
 
-Player::addCoins(int money){
-    coins+=money;
+void Player::addCoins(int money){
+    m_coins+=money;
 }
 
-PLayer::pay(int money){
-    if(coins>=money){
-        coins-=money;
+bool Player::pay(int money){
+    if(m_coins>=money){
+        m_coins-=money;
         return true;
     }
     return false;
 }
 
-Player::getAttackStrength(){
-    return level+force;
+int Player::getAttackStrength(){
+    return m_level+m_force;
 }
+
