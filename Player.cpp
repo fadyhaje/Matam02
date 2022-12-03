@@ -10,7 +10,7 @@ Player ::Player(char* name,int HP,int force){
 }
 
 Player::printInfo(){
-    printfPlayerInfo(name,level,force,HP,coins);
+    printPlayerInfo(name,level,force,HP,coins);
 }
 
 Player::levelUP(){
@@ -54,7 +54,7 @@ Player::addCoins(int money){
     coins+=money;
 }
 
-PLayer::pay(int money){
+Player::pay(int money){
     if(coins>=money){
         coins-=money;
         return true;
