@@ -1,7 +1,9 @@
 #include <iostream>
 #include "Player.h"
+#include "utilities.h"
 
-Player ::Player(char* name,int HP,int force){
+Player::Player(const char* name,int HP,int force)
+{
     level=1;
     coins=0;
     this->force=force;
@@ -9,23 +11,24 @@ Player ::Player(char* name,int HP,int force){
     this->maxHP=HP;
 }
 
-Player::printInfo(){
-    printfPlayerInfo(name,level,force,HP,coins);
+void Player::printInfo(){
+    printPlayerInfo(name,level,force,HP,coins);
 }
 
-Player::levelUP(){
+void Player::levelUp()
+{
     if(level<10){
         level++;
     }
 }
-Player::getLevel(){
+int Player::getLevel()const{
     return level;
 }
-Player::buff(int additionalForce){
+void Player::buff(int additionalForce){
     force+=additionalForce;
 }
 
-Player::heal(int additionalHP){
+void Player::heal(int additionalHP){
     if((HP+additionalHP)>=maxHP){
         HP=maxHP;
     }
@@ -34,7 +37,7 @@ Player::heal(int additionalHP){
     }
 }
 
-Player::damage(int lowHP){
+void Player::damage(int lowHP){
     if((HP-lowHP)<=0){
         HP=0;
     }
@@ -43,25 +46,27 @@ Player::damage(int lowHP){
     }
 }
 
-Player::isKnouckedOut(){
+bool Player::isKnockedOut()const
+{
     if(HP==0){
         return true;
     }
     return false;
 }
 
-Player::addCoins(int money){
+void Player::addCoins(int money){
     coins+=money;
 }
 
-PLayer::pay(int money){
+bool Player::pay(int money){
     if(coins>=money){
-        coins-=money;
+      coins-=money;
         return true;
     }
     return false;
 }
 
-Player::getAttackStrength(){
+int Player::getAttackStrength(){
     return level+force;
 }
+
