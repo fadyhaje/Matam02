@@ -13,7 +13,7 @@ Mtmchkin::Mtmchkin(const char* playerName,const Card* cards,int cards_number):
         {
           cardsArray[i]=cards[i];
         }
-        nextCard=cards[nectIndex];
+        nextCard=cards[nextIndex];
       }
 }
 
