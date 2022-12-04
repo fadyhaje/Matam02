@@ -5,7 +5,7 @@ using namespace std;
 #include "utilities.h"
 
 
-Card ::Card(CardType type, const CardStats& stats)
+Card ::Card(CardType type, const CardStats& stats)//////////
 {
  this->m_effect=type;
  this->m_stats=stats;//המרה??
@@ -35,7 +35,10 @@ else if(m_effect==CardType::Heal|| m_effect==CardType::Buff)
             }
             else
             {
-             player.buff(m_stats.buff);
+             if(m_stars.buff>=0)
+             {
+              player.buff(m_stats.buff);
+             }
             }
         }
     }
