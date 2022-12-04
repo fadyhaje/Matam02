@@ -1,67 +1,83 @@
 #include <iostream>
 #include "Player.h"
 
-Player ::Player(char* name,int HP,int force){
-    level=1;
-    coins=0;
+Player ::Player(char* name,int maxHP,int force){
+    this->name=name;
+    this->level=1;
+    this->coins=0;
+    if(force>0){
     this->force=force;
-    this->HP=HP;
+    }
+    if(HP>0){
+    this->HP=maxHP;
     this->maxHP=HP;
+    }
 }
 
-Player::printInfo(){
+void Player::printInfo(){
     printfPlayerInfo(name,level,force,HP,coins);
 }
 
-Player::levelUP(){
+void Player::levelUP(){
     if(level<10){
         level++;
     }
 }
-Player::getLevel(){
+int Player::getLevel(){
     return level;
 }
-Player::buff(int additionalForce){
-    force+=additionalForce;
-}
 
-Player::heal(int additionalHP){
-    if((HP+additionalHP)>=maxHP){
-        HP=maxHP;
-    }
-    else{
-        HP+=additionalHP;
+void Player::buff(int addedForce){
+    if(addedlForce>=0){
+    force+=addedlForce;
     }
 }
 
-Player::damage(int lowHP){
-    if((HP-lowHP)<=0){
-        HP=0;
-    }
-    else{
-        HP-=lowHP;
+void Player::heal(int aaddedHP){
+    if(addedHP>=0){
+        if((HP+addedHP)>=maxHP){
+            HP=maxHP;
+        }
+        else{
+            HP+=addedHP;
+        }
     }
 }
 
-Player::isKnouckedOut(){
-    if(HP==0){
+void Player::damage(int lowHP){
+    if(lowHP>=0){
+        if((HP-lowHP)<=0){
+            HP=0;
+        }
+        else{
+            HP-=lowHP;
+        }
+    }
+}
+
+bool Player::isKnouckedOut(){
+    if(HP<=0){
         return true;
     }
     return false;
 }
 
-Player::addCoins(int money){
+void Player::addCoins(int money){
+    if(money>=0){
     coins+=money;
+    }
 }
 
-PLayer::pay(int money){
-    if(coins>=money){
-        coins-=money;
-        return true;
+bool PLayer::pay(int money){//there is a differnce
+    if(money>=0){//>= \\>?
+        if(coins>=money){
+            coins-=money;
+            return true;
+        }
     }
     return false;
 }
 
-Player::getAttackStrength(){
+int Player::getAttackStrength(){
     return level+force;
 }
