@@ -1,4 +1,4 @@
-Mtmchkin::Mtmchkin(const char* playerName,const Card* cards,int cards_number):
+Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
     cardsArray(new Card[cards_number]),
     player(playerName)
 {
@@ -6,14 +6,14 @@ Mtmchkin::Mtmchkin(const char* playerName,const Card* cards,int cards_number):
       cardIndex=0;
       if(cards_number>0)
       {
-        numOfCards=cards_number;
+        this->numOfCards=numOfCards;
       }
       if(cards!=NULL){
-        for(int i=0;i<cards_number;i++)
+        for(int i=0;i<numOfCards;i++)
         {
-          cardsArray[i]=cards[i];
+          (*this).cardsArray[i]=cardsArray[i];
         }
-        nextCard=cards[nextIndex];
+        nextCard=cardsArray[nextIndex];
       }
 }
 
@@ -27,7 +27,7 @@ Mtmchkin::Mtmchkin(const Mtmchkin& game):
 {
     for(int i=0;i<numOfCards; i++)
     {
-        cardsArray[i]=game.cardsArray[i];
+        (*this).cardsArray[i]=game.cardsArray[i];
     }
 }
 Mtmchkin::~Mtmchkin(){
@@ -39,7 +39,7 @@ void Mtmchkin::playNextCard(){
   if(GameStatus::MidGame==(*this).getGameStatus())
   {
     cardIndex++;
-    if(cardIndex==cards_number){
+    if(cardIndex==numOfCards){
       cardIndex=0;
     }
     nextCard=cardsArray[cardIndex];
