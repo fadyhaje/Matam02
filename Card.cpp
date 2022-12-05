@@ -40,7 +40,7 @@ else if(m_effect==CardType::Heal|| m_effect==CardType::Buff)
             }
             else
             {
-             if(m_stars.buff>=0)
+             if(m_stats.buff>=0)
              {
               player.buff(m_stats.buff);
              }
