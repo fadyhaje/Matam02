@@ -31,7 +31,7 @@ Mtmchkin::Mtmchkin(const Mtmchkin& game):
     }
 }
 Mtmchkin::~Mtmchkin(){
-  player.~Player();  
+ // player.~Player(); //?? critical?
   delete[] cardsArray;
 }
 
@@ -50,7 +50,7 @@ void Mtmchkin::playNextCard(){
 }
 
 bool Mtmchkin::isOver() const{
-  return ((*this).getGameStatus()!=GameStatus::MidGame);
+  return (m_status!=GameStatus::MidGame);
 }
  
 GameStatus Mtmchkin::getGameStatus() const{
