@@ -3,101 +3,101 @@
 #define DEFAULT_MAX_HP 100
 #define DEFAULT_FORCE 5
 Player ::Player(char* name,int maxHP,int force){
-	int len = strlen(name);
-	this->name = new char[len+1];
-	strcpy(this->name,name);
-	this->level=1;
-	this->coins=0;
-	if(force=>0){
-		this->force=force;
-	}
-	else
-	{
-		this->force=DEFAULT_FORCE;
-	}
-	if(maxHP>0){
-		this->HP=maxHP;
-		this->maxHP=HP;
-	}
-	else{
-		this->HP=DEFAULT_MAX_HP;
-		this->maxHP=DEFAULT_MAX_HP;
-	}
+    int len = strlen(name);
+    this->m_name = new char[len+1];
+    strcpy(this->m_name,name);
+    this->m_level=1;
+    this->m_coins=0;
+    if(force>=0){
+        this->m_force=force;
+    }
+    else
+    {
+        this->m_force=DEFAULT_FORCE;
+    }
+    if(maxHP>0){
+        this->m_HP=maxHP;
+        this->m_maxHP=m_HP;
+    }
+    else{
+        this->m_HP=DEFAULT_MAX_HP;
+        this->m_maxHP=DEFAULT_MAX_HP;
+    }
 }
 
 void Player::printInfo(){
-    printPlayerInfo(name,level,force,HP,coins);
+    printPlayerInfo(m_name,m_level,m_force,m_HP,m_coins);
 }
 
 void Player::levelUp(){
-    if(level<10){
-        level++;
+    if(m_level<10){
+        m_level++;
     }
 }
 int Player::getLevel() const{
-    return level;
+    return m_level;
 }
 
 Player::~Player(){
-    delete [] name;
+    delete [] m_name;
 }
 void Player::buff(int addedForce){
     if(addedForce>=0){
-    force+=addedlForce;
+        m_force+=addedForce;
     }
 }
 
 Player::Player (const Player& player){
-    int len = strlen(player.name);
-    name = new char[len+1];
-    strcpy(name,player.name);
-    m_level = player.level ;
-    m_coins = player.coins ;
-    m_force = player.force ;
-    m_maxHP = player.maxHP ;
-    m_HP = player.HP ;
+    int len = strlen(player.m_name);
+    m_name = new char[len+1];
+    strcpy(m_name,player.m_name);
+    m_level = player.m_level ;
+    m_coins = player.m_coins ;
+    m_force = player.m_force ;
+    m_maxHP = player.m_maxHP ;
+    m_HP = player.m_HP ;
 }
 
 Player& Player::operator=(const Player& player) {
-	if (this == &player) {
-		return *this;
-	}
-	delete [] name;
-	int len = strlen(player.name);
-	name = new char[len+1];
-	strcpy(name,player.name);
-	level = player.level ;
-	coins = player.coins ;
-	force = player.force ;
-	maxHP = player.maxHP ;
-	HP = player.HP ;
-	return *this;
+    if (this == &player) {
+        return *this;
+    }
+    delete [] m_name;
+    int len = strlen(player.m_name);
+    m_name = new char[len+1];
+    strcpy(m_name,player.m_name);
+    m_level = player.m_level ;
+    m_coins = player.m_coins ;
+    m_force = player.m_force ;
+    m_maxHP = player.m_maxHP ;
+    m_HP = player.m_HP ;
+    return *this;
 }
 
 void Player::heal(int addedHP){
     if(addedHP>=0){
-        if((HP+addedHP)>maxHP){
-            HP=maxHP;
+        if((m_HP+addedHP)>m_maxHP){
+            m_HP=m_maxHP;
         }
         else{
-            HP+=addedHP;
+            m_HP+=addedHP;
         }
     }
 }
 
 void Player::damage(int lowHP){
     if(lowHP>=0){
-        if((HP-lowHP)<0){
-            HP=0;
+        if((m_HP-lowHP)<0){
+            m_HP=0;
         }
         else{
-            HP-=lowHP;
+            m_HP-=lowHP;
         }
     }
 }
 
-bool Player::isKnockedOut(){
-    if(HP==0){
+bool Player::isKnockedOut() const{
+    if(m_HP==0){
         return true;
     }
     return false;
@@ -105,23 +105,23 @@ bool Player::isKnockedOut(){
 
 void Player::addCoins(int money){
     if(money>=0){
-    coins+=money;
+        m_coins+=money;
     }
 }
 
 bool Player::pay(int money){
-	if(money>=0){
-		if(coins>=money){
-			coins-=money;
-			return true;
-		}
-	}
-	else{
-		return true;
-	}
-	return false;
+    if(money>=0){
+        if(m_coins>=money){
+            m_coins-=money;
+            return true;
+        }
+    }
+    else{
+        return true;
+    }
+    return false;
 }
 
 int Player::getAttackStrength(){
-    return (level+force);
+    return (m_level+m_force);
 }
