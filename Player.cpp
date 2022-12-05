@@ -23,7 +23,7 @@ void Player::printInfo(){
     printfPlayerInfo(name,level,force,HP,coins);
 }
 
-void Player::levelUP(){///////
+void Player::levelUP(){
     if(level<10){
         level++;
     }
@@ -103,14 +103,17 @@ void Player::addCoins(int money){
     }
 }
 
-bool PLayer::pay(int money){//there is a differnce//////
-    if(money>=0 ){//>= \\>?
-        if(coins>=money){
-            coins-=money;
-            return true;
-        }
-    }
-    return false;
+bool PLayer::pay(int money){
+	if(money>=0){
+		if(coins>=money){
+			coins-=money;
+			return true;
+		}
+	}
+	else{
+		return true;
+	}
+	return false;
 }
 
 int Player::getAttackStrength(){
