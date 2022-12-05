@@ -13,14 +13,14 @@ Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
         {
           (*this).cardsArray[i]=cardsArray[i];
         }
-        nextCard=cardsArray[nextIndex];
+        //nextCard=cardsArray[nextIndex];
       }
 }
 
-Mtmchkin::Mtmchkin(const Mtmchkin& game):
+Mtmchkin::Mtmchkin(const Mtmchkin& game):////
     gameStatus(game.gameStatus),
     cardsArray(new Card[game.numOfCards]),
-    nextCard(game.nextCard),
+    //nextCard(game.nextCard),
     cardIndex(game.cardIndex),
     numOfCards(game.numOfCards),
     player(Player(game.player))
@@ -36,17 +36,25 @@ Mtmchkin::~Mtmchkin(){
 }
 
 void Mtmchkin::playNextCard(){
-  if(GameStatus::MidGame==(*this).getGameStatus())
-  {
-    cardIndex++;
-    if(cardIndex==numOfCards){
-      cardIndex=0;
+    if(GameStatus::MidGame==(*this).getGameStatus())
+    {
+        if(cardIndex==numOfCards){
+            cardIndex=0;
+        }
+        //nextCard=cardsArray[cardIndex];
+        cardsArray[cardIndex].printInfo();
+        cardsArray[cardIndex].applyEncounter(player);
+        player.printInfo(); 
+        cardIndex++;
+        if(player.getLevel()==10)
+        {
+            return GameStatus::Win;
+        }
+        if(player.isKnockedOut())
+        {
+            return GameStatus::Loss;
+        }
     }
-    nextCard=cardsArray[cardIndex];
-    cardsArray[cardIndex].printInfo();
-    cardsArray[cardIndex].applyEncounter(player);
-    player.printInfo(); 
-  }  
 }
 
 bool Mtmchkin::isOver() const{
@@ -54,7 +62,9 @@ bool Mtmchkin::isOver() const{
 }
  
 GameStatus Mtmchkin::getGameStatus() const{
-  if(player.getLevel()==10)
+    
+    retrun m_status;
+ /* if(player.getLevel()==10)
   {
     return GameStatus::Win;
   }
@@ -62,10 +72,10 @@ GameStatus Mtmchkin::getGameStatus() const{
   {
     return GameStatus::Loss;
   }
-  return GameStatus::MidGame;
+  return GameStatus::MidGame;*/
 }
 
-Mtmchkin& Mtmchkin::operator=(const Mtmchkin& game){
+Mtmchkin& Mtmchkin::operator=(const Mtmchkin& game){/////
     if (this==&game)
     {
         return *this;
@@ -77,8 +87,8 @@ Mtmchkin& Mtmchkin::operator=(const Mtmchkin& game){
         cardsArray[i]=game.cardsArray[i];
     }
     gameStatus=game.gameStatus;
-    nextCard.~Card();
-    nextCard=game.nextCard;
+    //nextCard.~Card();
+    //nextCard=game.nextCard;
     cardIndex=game.cardIndex;
     numOfCards=game.numOfCards;
     player.~Player();
