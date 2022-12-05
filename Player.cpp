@@ -1,14 +1,19 @@
 #include <iostream>
 #include "Player.h"
-
+#define DEFAULT_MAX_HP 100
+#define DEFAULT_FORCE 5
 Player ::Player(char* name,int maxHP,int force){
 	int len = strlen(name);
 	this->name = new char[len+1];
 	strcpy(this->name,name);
 	this->level=1;
 	this->coins=0;
-	if(force>0){
+	if(force=>0){
 		this->force=force;
+	}
+	else
+	{
+		this->force=DEFAULT_FORCE;
 	}
 	if(maxHP>0){
 		this->HP=maxHP;
@@ -21,15 +26,15 @@ Player ::Player(char* name,int maxHP,int force){
 }
 
 void Player::printInfo(){
-    printfPlayerInfo(name,level,force,HP,coins);
+    printPlayerInfo(name,level,force,HP,coins);
 }
 
-void Player::levelUP(){
+void Player::levelUp(){
     if(level<10){
         level++;
     }
 }
-int Player::getLevel(){
+int Player::getLevel() const{
     return level;
 }
 
@@ -37,7 +42,7 @@ Player::~Player(){
     delete [] name;
 }
 void Player::buff(int addedForce){
-    if(addedlForce>=0){
+    if(addedForce>=0){
     force+=addedlForce;
     }
 }
@@ -69,7 +74,7 @@ Player& Player::operator=(const Player& player) {
 	return *this;
 }
 
-void Player::heal(int aaddedHP){
+void Player::heal(int addedHP){
     if(addedHP>=0){
         if((HP+addedHP)>maxHP){
             HP=maxHP;
@@ -91,7 +96,7 @@ void Player::damage(int lowHP){
     }
 }
 
-bool Player::isKnouckedOut(){
+bool Player::isKnockedOut(){
     if(HP==0){
         return true;
     }
@@ -104,7 +109,7 @@ void Player::addCoins(int money){
     }
 }
 
-bool PLayer::pay(int money){
+bool Player::pay(int money){
 	if(money>=0){
 		if(coins>=money){
 			coins-=money;
