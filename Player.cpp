@@ -2,18 +2,21 @@
 #include "Player.h"
 
 Player ::Player(char* name,int maxHP,int force){
-    int len = strlen(name);
-    this->name = new char[len+1];
-    strcpy(this->name,name);
-    this->level=1;
-    this->coins=0;
-    if(force>0){
-    this->force=force;
-    }
-    if(HP>0){
-    this->HP=maxHP;
-    this->maxHP=HP;
-    }
+	int len = strlen(name);
+	this->name = new char[len+1];
+	strcpy(this->name,name);
+	this->level=1;
+	this->coins=0;
+	if(force>0){
+		this->force=force;
+	}
+	if(maxHP>0){/////////
+		this->HP=maxHP;
+		this->maxHP=HP;
+	}
+	else{
+		HP=max
+	}
 }
 
 void Player::printInfo(){
@@ -54,20 +57,20 @@ Player& Player::operator=(const Player& player) {
 		return *this;
 	}
 	delete [] name;
-    int len = strlen(player.name);
+	int len = strlen(player.name);
 	name = new char[len+1];
-    strcpy(name,player.name);
+	strcpy(name,player.name);
 	level = player.level ;
-    coins = player.coins ;
-    force = player.force ;
-    maxHP = player.maxHP ;
-    HP = player.HP ;
+	coins = player.coins ;
+	force = player.force ;
+	maxHP = player.maxHP ;
+	HP = player.HP ;
 	return *this;
 }
 
 void Player::heal(int aaddedHP){
     if(addedHP>=0){
-        if((HP+addedHP)>=maxHP){
+        if((HP+addedHP)>maxHP){
             HP=maxHP;
         }
         else{
@@ -78,7 +81,7 @@ void Player::heal(int aaddedHP){
 
 void Player::damage(int lowHP){
     if(lowHP>=0){
-        if((HP-lowHP)<=0){
+        if((HP-lowHP)<0){
             HP=0;
         }
         else{
