@@ -5,10 +5,15 @@ using namespace std;
 #include "utilities.h"
 
 
-Card ::Card(CardType type, const CardStats& stats)//////////
+Card ::Card(CardType type, const CardStats& stats)
 {
- this->m_effect=type;
- this->m_stats=stats;//המרה??
+    m_effect = type;
+    m_stats.force = stats.force;
+    m_stats.hpLossOnDefeat = stats.hpLossOnDefeat;
+    m_stats.cost = stats.cost;
+    m_stats.heal = stats.heal;
+    m_stats.buff = stats.buff;
+    m_stats.loot = stats.loot;
 }
 void Card ::applyEncounter(Player& player) const
 {
