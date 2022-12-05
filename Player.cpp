@@ -10,12 +10,13 @@ Player ::Player(char* name,int maxHP,int force){
 	if(force>0){
 		this->force=force;
 	}
-	if(maxHP>0){/////////
+	if(maxHP>0){
 		this->HP=maxHP;
 		this->maxHP=HP;
 	}
 	else{
-		HP=max
+		this->HP=DEFAULT_MAX_HP;
+		this->maxHP=DEFAULT_MAX_HP;
 	}
 }
 
