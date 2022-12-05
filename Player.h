@@ -7,16 +7,18 @@
 
 #ifndef Player_h
 #define Player_h
-#include <string>
+#include <string.h>
+#include "utilities.h"
+
 using namespace std;
 class Player{
 private:
-    const char* name;
-    int level;
-    int force;
-    int maxHP;
-    int HP;
-    int coins;
+    const char* m_name;
+    int m_level;
+    int m_force;
+    int m_maxHP;
+    int m_HP;
+    int m_coins;
    
 public:
     /**
