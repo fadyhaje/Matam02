@@ -1,3 +1,24 @@
+#include "Mtmchkin.h"
+/*Mtmchkin :: Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards)
+{
+cardsArray=(new Card[numOfCards]);
+Player player (playerName);
+
+                this->gameStatus=GameStatus::MidGame;
+        cardIndex=0;
+        if(numOfCards>0)
+        {
+            this->numOfCards=numOfCards;
+        }
+        if(cardsArray!=NULL){
+            for(int i=0;i<numOfCards;i++)
+            {
+                (*this).cardsArray[i]=cardsArray[i];
+            }
+            //nextCard=cardsArray[nextIndex];
+        }
+
+}*/
 Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
     cardsArray(new Card[cards_number]),
     player(playerName)
@@ -48,22 +69,22 @@ void Mtmchkin::playNextCard(){
         cardIndex++;
         if(player.getLevel()==10)
         {
-            return GameStatus::Win;
+             gameStatus=  GameStatus::Win;
         }
         if(player.isKnockedOut())
         {
-            return GameStatus::Loss;
+             gameStatus=  GameStatus::Loss;
         }
     }
 }
 
 bool Mtmchkin::isOver() const{
-  return (m_status!=GameStatus::MidGame);
+  return (gameStatus!=GameStatus::MidGame);
 }
  
 GameStatus Mtmchkin::getGameStatus() const{
     
-    retrun m_status;
+     return gameStatus;
  /* if(player.getLevel()==10)
   {
     return GameStatus::Win;
