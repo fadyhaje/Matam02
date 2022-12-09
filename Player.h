@@ -13,7 +13,7 @@
 using namespace std;
 class Player{
 private:
-    const char* m_name;
+     char* m_name;
     int m_level;
     int m_force;
     int m_maxHP;
@@ -35,13 +35,13 @@ public:
      *
      * @param player - the player we want to copy
      */
-    Player(const Player& player)=default;
+    Player(const Player& player);
 
     /**
      * @brief Destroy the Player object
      *
      */
-    ~Player()=default;
+    ~Player();
 
     /**
      * @brief assignment operator
@@ -50,7 +50,7 @@ public:
      *
      * @return Player& - player that we want to make it equal to other
      */
-    Player& operator=(const Player& other)=default;
+    Player& operator=(const Player& other);
 
     /**
      * @brief  print the info of the player
