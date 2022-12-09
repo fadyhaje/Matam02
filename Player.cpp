@@ -2,7 +2,7 @@
 #include "Player.h"
 #define DEFAULT_MAX_HP 100
 #define DEFAULT_FORCE 5
-Player ::Player(char* name,int maxHP,int force){
+Player ::Player(const char* name,int maxHP,int force){
     int len = strlen(name);
     this->m_name = new char[len+1];
     strcpy(this->m_name,name);
