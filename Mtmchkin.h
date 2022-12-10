@@ -22,7 +22,7 @@ public:
      * 
      * @param game - the Mtmchkin object we want to copy
      */
-    Mtmchkin(const Mtmchkin& game);
+    Mtmchkin(const Mtmchkin& other);
     /**
      * @brief Destroy the Mtmchkin object
      * 
@@ -65,22 +65,20 @@ public:
      */
     GameStatus getGameStatus() const;
 
-    //TODO: complete the Mtmchkin class.
     /**
      * @brief assignment operator 
      * 
      * @param game - the Mtmchkin object that we want to make the object equal to
      * @return Mtmchkin& - Mtmchkin object equal to game
      */
-    Mtmchkin& operator=(const Mtmchkin& game);
+    Mtmchkin& operator=(const Mtmchkin& other);
 
 private:
-    GameStatus gameStatus;
-    Card* cardsArray;
-    Card nextCard;
-    int cardIndex;
-    int numOfCards;
-    Player player;
+    GameStatus m_status;
+    Card* m_cardsArray;
+    int m_cardIndex;
+    int m_numOfCards;
+    Player m_player;
 };
 
 
