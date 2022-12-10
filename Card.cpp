@@ -22,13 +22,15 @@ void Card :: applyEncounter(Player& player) const
     {
         if( player.getAttackStrength()>=m_stats.force)
         {
-            printBattleResult(true);//define
             player.levelUp();
             player.addCoins(m_stats.loot);
+            printBattleResult(true);//define
+            
         }
         else {
-            printBattleResult(false);//define
             player.damage(m_stats.hpLossOnDefeat);
+            printBattleResult(false);//define
+            
         }
     }
     else if(m_effect==CardType::Heal|| m_effect==CardType::Buff)
