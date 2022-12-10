@@ -2,8 +2,10 @@
 #define Player_h
 #include <string.h>
 #include "utilities.h"
-
+#define DEFAULT_MAX_HP 100
+#define DEFAULT_FORCE 5
 using namespace std;
+
 class Player{
 private:
     char* m_name;
