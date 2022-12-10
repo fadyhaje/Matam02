@@ -32,7 +32,7 @@ public:
      *
      * @param player - the player theat will be copied
      */
-    Player(const Player& player);
+    Player(const Player& other);
 
     /**
      * @brief Destroy the Player 
@@ -73,21 +73,21 @@ public:
      *
      * @param additionalForce - the amount of force that will be added to the player
      */
-    void buff(int additionalForce);
+    void buff(int addedForce);
 
     /**
      * @brief heal the player by additional hp
      *
      * @param additionalHP - the amount of hp that will be added to player
      */
-    void heal(int additionalHP);
+    void heal(int addedHP);
 
     /**
      * @brief damage player by damageHP
      *
      * @param damageHP - the amount of damage that will be deduced from the player
      */
-    void damage(int damageHP);
+    void damage(int lowHP);
 
     /**
      * @brief returns if player is knocked out
@@ -102,7 +102,7 @@ public:
      *
      * @param additionalCoins - the amount of gold that willl be added to the player
      */
-    void addCoins(int additionalCoins);
+    void addCoins(int money);
 
     /**
      * @brief the player pay amount of money equals to damageConis
@@ -111,7 +111,7 @@ public:
      * @return true - if the player can afford the amount of gold
      * @return false - if the player can not afford the amount of gold
      */
-    bool pay(int damageCoins);
+    bool pay(int money);
 
     /**
      * @brief Get the Attack Strength of the player
