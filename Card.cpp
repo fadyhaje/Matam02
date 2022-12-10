@@ -5,17 +5,18 @@ using namespace std;
 #include "utilities.h"
 
 
-Card ::Card(CardType type, const CardStats& stats)
+Card :: Card(CardType type, const CardStats& stats)
 {
-    m_effect = type;
-    m_stats.force = stats.force;
-    m_stats.hpLossOnDefeat = stats.hpLossOnDefeat;
-    m_stats.cost = stats.cost;
-    m_stats.heal = stats.heal;
     m_stats.buff = stats.buff;
+    m_stats.heal = stats.heal;
+    m_stats.force = stats.force;
+    m_stats.cost = stats.cost;
+    m_stats.hpLossOnDefeat = stats.hpLossOnDefeat;
     m_stats.loot = stats.loot;
+    m_effect = type;
 }
-void Card ::applyEncounter(Player& player) const
+
+void Card :: applyEncounter(Player& player) const
 {
     if ( m_effect== CardType::Battle)
     {
@@ -53,7 +54,7 @@ void Card ::applyEncounter(Player& player) const
     }
 }
 
-void Card ::printInfo() const
+void Card :: printInfo() const
 {
     if(m_effect==CardType::Battle)
     {
