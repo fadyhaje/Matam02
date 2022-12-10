@@ -1,8 +1,8 @@
 #include "Mtmchkin.h"
-/*Mtmchkin :: Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards)
+Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards)
 {
-cardsArray=(new Card[numOfCards]);
-Player player (playerName);
+    (*this).cardsArray=(new Card[numOfCards]);
+ Player player(playerName);
 
                 this->gameStatus=GameStatus::MidGame;
         cardIndex=0;
@@ -18,8 +18,8 @@ Player player (playerName);
             //nextCard=cardsArray[nextIndex];
         }
 
-}*/
-Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
+}
+/*Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
     cardsArray(new Card[cards_number]),
     player(playerName)
 {
@@ -37,7 +37,7 @@ Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
         //nextCard=cardsArray[nextIndex];
       }
 }
-
+*/
 Mtmchkin::Mtmchkin(const Mtmchkin& game):////
     gameStatus(game.gameStatus),
     cardsArray(new Card[game.numOfCards]),
