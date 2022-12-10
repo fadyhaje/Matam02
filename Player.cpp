@@ -42,7 +42,8 @@ Player::~Player(){
     delete [] m_name;
 }
 void Player::buff(int addedForce){
-    if(addedForce>=0){
+    if(addedForce>=0)
+    {
         m_force+=addedForce;
     }
 }
@@ -75,7 +76,8 @@ Player& Player::operator=(const Player& player) {
 }
 
 void Player::heal(int addedHP){
-    if(addedHP>=0){
+    if(addedHP>=0)
+    {
         if((m_HP+addedHP)>m_maxHP){
             m_HP=m_maxHP;
         }
@@ -86,37 +88,42 @@ void Player::heal(int addedHP){
 }
 
 void Player::damage(int lowHP){
-    if(lowHP>=0){
-        if((m_HP-lowHP)<0){
-            m_HP=0;
+    if(lowHP>=0)
+    {
+        if((m_HP-lowHP)>=0){
+            m_HP-=lowHP
         }
         else{
-            m_HP-=lowHP;
+            m_HP=0;
         }
     }
 }
 
 bool Player::isKnockedOut() const{
-    if(m_HP==0){
+    if(m_HP==0)
+    {
         return true;
     }
     return false;
 }
 
 void Player::addCoins(int money){
-    if(money>=0){
+    if(money>=0)
+    {
         m_coins+=money;
     }
 }
 
 bool Player::pay(int money){
-    if(money>=0){
+    if(money>0)
+    {
         if(m_coins>=money){
             m_coins-=money;
             return true;
         }
     }
-    else{
+    else
+    {
         return true;
     }
     return false;
