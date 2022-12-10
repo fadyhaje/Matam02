@@ -6,6 +6,7 @@ Player :: Player(const char* name,int maxHP,int force){
     int length = strlen(name);
     this->m_name = new char[length+1];
     strcpy(this->m_name,name);
+    this->m_level=1;
     if(force>0){
         this->m_force=force;
     }
@@ -24,7 +25,6 @@ Player :: Player(const char* name,int maxHP,int force){
         this->m_HP=maxHP;
     }
     this->m_coins=0;
-    this->m_level=1;
 }
 
 void Player::printInfo() const{
