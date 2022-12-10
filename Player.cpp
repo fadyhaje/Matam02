@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Player.h"
+#include <cstring>
 
 Player :: Player(const char* name,int maxHP,int force){
     int length = strlen(name);
