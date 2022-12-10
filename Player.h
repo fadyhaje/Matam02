@@ -6,7 +6,7 @@
 using namespace std;
 class Player{
 private:
-     char* m_name;
+    char* m_name;
     int m_level;
     int m_force;
     int m_maxHP;
@@ -49,7 +49,7 @@ public:
      * @brief  print the information about the player
      *
      */
-    void printInfo();
+    void printInfo() const;
 
     /**
      * @brief make the level up of the player
@@ -114,7 +114,7 @@ public:
      *
      * @return int returns the Attack strength of the player
      */
-    int getAttackStrength();
+    int getAttackStrength() const;
          //Player()  {}
 
 };
