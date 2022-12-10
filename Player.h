@@ -1,5 +1,7 @@
 #ifndef Player_h
 #define Player_h
+
+#include <stdbool.h>
 #include <string.h>
 #include "utilities.h"
 #define DEFAULT_MAX_HP 100
