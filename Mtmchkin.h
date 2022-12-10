@@ -79,7 +79,7 @@ private:
     Card* m_cardsArray;
     int m_cardIndex;
     int m_numOfCards;
-    Player player= Player ("");
+    Player m_player= Player ("");
 };
 
 
