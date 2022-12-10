@@ -1,21 +1,21 @@
 #include "Mtmchkin.h"
 Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards)
 {
-    (*this).cardsArray=(new Card[numOfCards]);
-player= Player(playerName);
-                this->gameStatus=GameStatus::MidGame;
-        cardIndex=0;
-        if(numOfCards>0)
+    (*this).m_cardsArray=(new Card[numOfCards]);
+    m_player= Player(playerName);
+    this->m_status=GameStatus::MidGame;
+    m_cardIndex=0;
+    if(numOfCards>0)
+    {
+        this->m_numOfCards=numOfCards;
+    }
+    if(cardsArray!=NULL){
+        for(int i=0;i<numOfCards;i++)
         {
-            this->numOfCards=numOfCards;
+            (*this).m_cardsArray[i]=cardsArray[i];
         }
-        if(cardsArray!=NULL){
-            for(int i=0;i<numOfCards;i++)
-            {
-                (*this).cardsArray[i]=cardsArray[i];
-            }
-            //nextCard=cardsArray[nextIndex];
-        }
+        //nextCard=cardsArray[nextIndex];
+    }
 
 }
 /*Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
@@ -38,61 +38,61 @@ player= Player(playerName);
 }
 */
 Mtmchkin::Mtmchkin(const Mtmchkin& game):////
-    gameStatus(game.gameStatus),
-    cardsArray(new Card[game.numOfCards]),
-    //nextCard(game.nextCard),
-    cardIndex(game.cardIndex),
-    numOfCards(game.numOfCards),
-    player(Player(game.player))
+        m_status(game.m_status),
+        m_cardsArray(new Card[game.m_numOfCards]),
+        //nextCard(game.nextCard),
+        m_cardIndex(game.m_cardIndex),
+        m_numOfCards(game.m_numOfCards),
+        m_player(Player(game.m_player))
 {
-    for(int i=0;i<numOfCards; i++)
+    for(int i=0;i<m_numOfCards; i++)
     {
-        (*this).cardsArray[i]=game.cardsArray[i];
+        (*this).m_cardsArray[i]=game.m_cardsArray[i];
     }
 }
 Mtmchkin::~Mtmchkin(){
- // player.~Player(); //?? critical?
-  delete[] cardsArray;
+    // player.~Player(); //?? critical?
+    delete[] m_cardsArray;
 }
 
 void Mtmchkin::playNextCard(){
     if(GameStatus::MidGame==(*this).getGameStatus())
     {
-        if(cardIndex==numOfCards){
-            cardIndex=0;
+        if(m_cardIndex==m_numOfCards){
+            m_cardIndex=0;
         }
         //nextCard=cardsArray[cardIndex];
-        cardsArray[cardIndex].printInfo();
-        cardsArray[cardIndex].applyEncounter(player);
-        player.printInfo(); 
-        cardIndex++;
-        if(player.getLevel()==10)
+        m_cardsArray[m_cardIndex].printInfo();
+        m_cardsArray[m_cardIndex].applyEncounter(m_player);
+        m_player.printInfo();
+        m_cardIndex++;
+        if(m_player.getLevel()==10)
         {
-             gameStatus=  GameStatus::Win;
+            m_status=  GameStatus::Win;
         }
-        if(player.isKnockedOut())
+        if(m_player.isKnockedOut())
         {
-             gameStatus=  GameStatus::Loss;
+            m_status=  GameStatus::Loss;
         }
     }
 }
 
 bool Mtmchkin::isOver() const{
-  return (gameStatus!=GameStatus::MidGame);
+    return (m_status!=GameStatus::MidGame);
 }
- 
+
 GameStatus Mtmchkin::getGameStatus() const{
-    
-     return gameStatus;
- /* if(player.getLevel()==10)
-  {
-    return GameStatus::Win;
-  }
-  if(player.isKnockedOut())
-  {
-    return GameStatus::Loss;
-  }
-  return GameStatus::MidGame;*/
+
+    return m_status;
+    /* if(player.getLevel()==10)
+     {
+       return GameStatus::Win;
+     }
+     if(player.isKnockedOut())
+     {
+       return GameStatus::Loss;
+     }
+     return GameStatus::MidGame;*/
 }
 
 Mtmchkin& Mtmchkin::operator=(const Mtmchkin& game){/////
@@ -100,18 +100,18 @@ Mtmchkin& Mtmchkin::operator=(const Mtmchkin& game){/////
     {
         return *this;
     }
-    delete[] cardsArray;
-    cardsArray=new Card[game.numOfCards];
-    for(int i=0;i<numOfCards; i++)
+    delete[] m_cardsArray;
+    m_cardsArray=new Card[game.m_numOfCards];
+    for(int i=0;i<m_numOfCards; i++)
     {
-        cardsArray[i]=game.cardsArray[i];
+        m_cardsArray[i]=game.m_cardsArray[i];
     }
-    gameStatus=game.gameStatus;
+    m_status=game.m_status;
     //nextCard.~Card();
     //nextCard=game.nextCard;
-    cardIndex=game.cardIndex;
-    numOfCards=game.numOfCards;
-    player.~Player();
-    player=game.player;
-    return *this;  
+    m_cardIndex=game.m_cardIndex;
+    m_numOfCards=game.m_numOfCards;
+    m_player.~Player();
+    m_player=game.m_player;
+    return *this;
 }
