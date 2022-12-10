@@ -2,7 +2,7 @@
 #define Player_h
 
 #include <stdbool.h>
-#include <string.h>
+#include <string>
 #include "utilities.h"
 #define DEFAULT_MAX_HP 100
 #define DEFAULT_FORCE 5
