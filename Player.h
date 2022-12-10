@@ -122,6 +122,8 @@ public:
      * @return int returns Attack strength of player
      */
     int getAttackStrength();
+         Player()  {}
+
 };
 
 #endif /* Player_h */
