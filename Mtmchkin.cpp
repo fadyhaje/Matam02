@@ -1,7 +1,7 @@
 #include "Mtmchkin.h"
 Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards):
 m_status(GameStatus::MidGame),
-m_cardsArray((Card *)""),
+m_cardsArray(new Card [numOfCards]()),
 m_cardIndex(0),
 m_numOfCards(numOfCards),    
 m_player(playerName) 
