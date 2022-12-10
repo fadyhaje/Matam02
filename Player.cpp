@@ -98,7 +98,7 @@ void Player::damage(int lowHP){
     {
         if((m_HP-lowHP)>=0)
         {
-            m_HP-=lowHP
+            m_HP-=lowHP;
         }
         else
         {
