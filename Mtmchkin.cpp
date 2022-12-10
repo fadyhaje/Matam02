@@ -2,8 +2,7 @@
 Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards)
 {
     (*this).cardsArray=(new Card[numOfCards]);
- Player player(playerName);
-
+player= Player(playerName);
                 this->gameStatus=GameStatus::MidGame;
         cardIndex=0;
         if(numOfCards>0)
