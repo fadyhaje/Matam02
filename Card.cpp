@@ -3,7 +3,7 @@
 #include <stdbool.h>
 using namespace std;
 #include "utilities.h"
-
+#include "Player.h"
 
 Card :: Card(CardType type, const CardStats& stats)
 {
